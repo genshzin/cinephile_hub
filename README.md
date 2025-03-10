@@ -21,21 +21,7 @@ Cinephile Hub adalah aplikasi browsing film berbasis Flutter yang dirancang untu
 - **crystal_navigation_bar**: Bottom navigation bar
 
 ## Learning Outcomes
-Selama pengembangan aplikasi ini, ada beberapa pembelajaran penting yang saya dapatkan.
-
-1. Provider
-Saya memilih Provider sebagai state management utama karena kesederhanaan dan efektivitasnya. Dibanding package lain yang lebih kompleks, Provider menawarkan pendekatan lightweight yang cocok untuk kebutuhan aplikasi. Dengan membuat multiple providers (MovieProvider, JournalProvider, BookmarkProvider), saya bisa memisahkan logic secara modular sekaligus menjaga codebase tetap rapi. Tantangan terbesar adalah mengelola state antar-screen, yang akhirnya teratasi dengan metode provider spesifik untuk tiap use case.
-
-2. Integrasi TMDB API
-Pengalaman pertama integrasi dengan TMDB API membuka wawasan tentang desain data model, API service class, dan error handling. Menggunakan package http, saya membangun arsitektur layanan terpisah antara network request dan UI logic, sehingga aplikasi lebih mudah di-maintain dan di-test.
-
-3. Animasi
-Implementasi hero transitions untuk detail film, shimmer effects untuk loading states, dan custom transitions antar layar mengharuskan saya untuk mendalami sistem animasi Flutter. asilnya, UI terasa lebih responsif dan engaging menurut saya.
-
-4. Shared Preferences 
-Shared Preferences terbukti sangat berguna untuk penyimpanan data pengguna seperti entri jurnal dan bookmark. Proses serialization/deserialization objek kompleks ke format JSON sempat menantang, tetapi hasilnya cukup memuaskan karena saya jadi tidak harus mengulang mengisi data ketika testing fungsionalitas.
-
-Tantangan umum selama pengembangan adalah kompleksitas state management dan integrasi API TMDB karena baru pertama kali menggunakan API mereka (Postman sangat membantu dalam proses ini), kemudian gimana cara implementasi provider yang benar dan efisien. Proyek ini telah secara substansial meningkatkan keterampilan pengembangan Flutter saya dan mengajarkan saya untuk membuat aplikasi yang fungsional dan menarik secara visual. Untuk ke depannya, saya merencanakan untuk lebih mengevaluasi desain, mengeksplor komunitas pub dev, serta autentikasi dan otorisasi (misalnya dengan menggunakan third party seperti google)
+Selama pengembangan aplikasi ini, ada beberapa pembelajaran penting yang saya dapatkan. Pertama, saya memilih Provider sebagai state management utama karena kesederhanaan dan efektivitasnya. Dibanding package lain yang lebih kompleks, Provider menawarkan pendekatan lightweight yang cocok untuk kebutuhan aplikasi. Dengan membuat multiple providers (MovieProvider, JournalProvider, BookmarkProvider), saya bisa memisahkan logic secara modular sekaligus menjaga codebase tetap rapi. Tantangan terbesar adalah mengelola state antar-screen, yang akhirnya teratasi dengan metode provider spesifik untuk tiap use case. Kedua, Pengalaman pertama integrasi dengan TMDB API membuka wawasan tentang desain data model, API service class, dan error handling. Menggunakan package http, saya membangun arsitektur layanan terpisah antara network request dan UI logic, sehingga aplikasi lebih mudah di-maintain dan di-test. Ketiga, implementasi hero transitions untuk detail film, shimmer effects untuk loading states, dan custom transitions antar layar mengharuskan saya untuk mendalami sistem animasi Flutter. asilnya, UI terasa lebih responsif dan engaging menurut saya. Keempat, Shared Preferences terbukti sangat berguna untuk penyimpanan data pengguna seperti entri jurnal dan bookmark. Proses serialization/deserialization objek kompleks ke format JSON sempat menantang, tetapi hasilnya cukup memuaskan karena saya jadi tidak harus mengulang mengisi data ketika testing fungsionalitas. Tantangan umum selama pengembangan adalah kompleksitas state management dan integrasi API TMDB karena baru pertama kali menggunakan API mereka (Postman sangat membantu dalam proses ini), kemudian gimana cara implementasi provider yang benar dan efisien. Proyek ini telah secara substansial meningkatkan keterampilan pengembangan Flutter saya dan mengajarkan saya untuk membuat aplikasi yang fungsional dan menarik secara visual. Untuk ke depannya, saya merencanakan untuk lebih mengevaluasi desain, mengeksplor komunitas pub dev, serta autentikasi dan otorisasi (misalnya dengan menggunakan third party seperti google)
 
 ## References
 - Flutter Documentation (flutter.dev)
