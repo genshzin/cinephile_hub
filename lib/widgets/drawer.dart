@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../screens/my_journal_screen.dart';
+import '../screens/bookmark_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -52,19 +54,29 @@ class CustomDrawer extends StatelessWidget {
               },
             ),
             _buildDrawerItem(
-              icon: Icons.watch_later_outlined,
-              title: 'Watchlist',
+              icon: Icons.book,
+              title: 'My Journal',
               onTap: () {
                 Navigator.pop(context);
-                // Add navigation logic
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const MyJournalScreen(),
+                  ),
+                );
               },
             ),
             _buildDrawerItem(
-              icon: Icons.favorite_border,
-              title: 'Favorites',
+              icon: Icons.bookmark_border,
+              title: 'Bookmarks',
               onTap: () {
                 Navigator.pop(context);
-                // Add navigation logic
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const BookmarkScreen(),
+                  ),
+                );
               },
             ),
           ],
