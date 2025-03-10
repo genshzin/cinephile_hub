@@ -27,6 +27,12 @@ class MovieProvider extends ChangeNotifier {
   int _trendingTotalPages = 1;
   bool _hasMoreTrending = true;
 
+  List<Movie> _searchResults = [];
+  int _searchPage = 1;
+  int _searchTotalPages = 1;
+  bool _hasMoreSearch = true;
+  String _lastQuery = '';
+
   List<Movie> get nowPlayingMovies => _nowPlayingMovies;
   List<Movie> get homeNowPlayingMovies => _homeNowPlayingMovies;
   List<Movie> get popularMovies => _popularMovies;
@@ -35,12 +41,14 @@ class MovieProvider extends ChangeNotifier {
   List<Movie> get homeTopRatedMovies => _homeTopRatedMovies;
   List<Movie> get trendingMovies => _trendingMovies;
   List<Movie> get homeTrendingMovies => _homeTrendingMovies;
+  List<Movie> get searchResults => _searchResults;
   bool get isLoading => _isLoading;
   String get error => _error;
   bool get hasMore => _hasMore;
   bool get hasMorePopular => _hasMorePopular;
   bool get hasMoreTopRated => _hasMoreTopRated;
   bool get hasMoreTrending => _hasMoreTrending;
+  bool get hasMoreSearch => _hasMoreSearch;
 
   Future<void> fetchNowPlayingMovies({bool refresh = false, bool forHome = false}) async {
     if (forHome) {
@@ -247,6 +255,46 @@ class MovieProvider extends ChangeNotifier {
       
       _trendingCurrentPage++;
       _hasMoreTrending = _trendingCurrentPage <= _trendingTotalPages;
+    } catch (e) {
+      _error = e.toString();
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> searchMovies(String query, {bool refresh = false}) async {
+    if (query.isEmpty) {
+      _searchResults = [];
+      notifyListeners();
+      return;
+    }
+
+    if (refresh) {
+      _searchPage = 1;
+      _searchResults = [];
+      _hasMoreSearch = true;
+      _lastQuery = query;
+    }
+
+    if (_isLoading || !_hasMoreSearch || (!refresh && query != _lastQuery)) return;
+
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      final result = await _apiService.searchMovies(query, page: _searchPage);
+      final List<Movie> movies = result['movies'];
+      _searchTotalPages = result['totalPages'];
+      
+      if (_searchPage == 1) {
+        _searchResults = movies;
+      } else {
+        _searchResults.addAll(movies);
+      }
+      
+      _searchPage++;
+      _hasMoreSearch = _searchPage <= _searchTotalPages;
     } catch (e) {
       _error = e.toString();
     } finally {

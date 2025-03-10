@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../screens/my_journal_screen.dart';
 import '../screens/bookmark_screen.dart';
+import '../screens/about_me_screen.dart';
+import '../screens/home_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -9,7 +11,16 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: Colors.black87,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              const Color(0xFF0D1321),
+              Colors.black.withOpacity(0.8),
+            ],
+          ),
+        ),
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -20,18 +31,21 @@ class CustomDrawer extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Icon(
-                    Icons.movie,
-                    color: Colors.white,
-                    size: 50,
-                  ),
+                  
                   SizedBox(height: 10),
                   Text(
-                    'CineHub',
+                    'Cinephile Hub',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Absolute Cinema.',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
                     ),
                   ),
                 ],
@@ -42,15 +56,25 @@ class CustomDrawer extends StatelessWidget {
               title: 'Home',
               onTap: () {
                 Navigator.pop(context);
-                // Add navigation logic
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const HomePage(),
+                  ),
+                );
               },
             ),
             _buildDrawerItem(
-              icon: Icons.movie_outlined,
-              title: 'Movies',
+              icon: Icons.person,
+              title: 'About Me',
               onTap: () {
                 Navigator.pop(context);
-                // Add navigation logic
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const AboutMeScreen(),
+                  ),
+                );
               },
             ),
             _buildDrawerItem(

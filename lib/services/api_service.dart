@@ -101,4 +101,28 @@ class ApiService {
       rethrow;
     }
   }
+
+  Future<Map<String, dynamic>> searchMovies(String query, {int page = 1}) async {
+    try {
+      final response = await http.get(
+        Uri.parse('$_baseUrl/search/movie?api_key=$_apiKey&query=$query&page=$page'),
+      );
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+        final List<Movie> movies = (data['results'] as List)
+            .map((json) => Movie.fromJson(json))
+            .toList();
+        return {
+          'movies': movies,
+          'currentPage': data['page'],
+          'totalPages': data['total_pages'],
+        };
+      } else {
+        throw Exception('Failed to search movies');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

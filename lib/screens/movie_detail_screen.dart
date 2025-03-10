@@ -509,7 +509,6 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  // Info row yang compact
                   Row(
                     children: [
                       Row(
@@ -528,7 +527,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       ),
                       const SizedBox(width: 20),
                       Text(
-                        widget.movie.releaseDate.split('-')[0], // Tahun saja
+                        widget.movie.releaseDate.split('-')[0], 
                         style: const TextStyle(color: Colors.white70, fontSize: 16),
                       ),
                       const SizedBox(width: 20),
